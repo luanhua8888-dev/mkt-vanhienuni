@@ -1,0 +1,9 @@
+{
+  "name": "vhu-hieu-minh-chon-nganh",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "check": "node --check dist/app.js"
+  }
+}
