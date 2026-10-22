@@ -127,6 +127,12 @@ const showCampus = async (index, announce = false) => {
     campusChoices[i].setAttribute('aria-pressed', String(active));
   });
   campusSlider.querySelector('[data-campus-current]').textContent = String(campusIndex + 1).padStart(2, '0');
+  const thumbnails = campusSlider.querySelector('.campus-thumbnails');
+  const choice = campusChoices[campusIndex];
+  if (thumbnails.scrollWidth > thumbnails.clientWidth) {
+    const offset = choice.getBoundingClientRect().left - thumbnails.getBoundingClientRect().left;
+    thumbnails.scrollTo({ left: thumbnails.scrollLeft + offset - (thumbnails.clientWidth - choice.offsetWidth) / 2, behavior: campusMotion.matches ? 'auto' : 'smooth' });
+  }
   if (announce) campusSlider.querySelector('[data-campus-status]').textContent = campusSlides[campusIndex].getAttribute('aria-label');
   campusSlides[(campusIndex + 1) % campusSlides.length].querySelector('img').loading = 'eager';
   scheduleCampus();
