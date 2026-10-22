@@ -16,7 +16,7 @@
   --radius-sm: 18px;
   --shadow: 0 24px 60px -32px #0f274055;
   --ease: cubic-bezier(.22, 1, .36, 1);
-  --font: 'Be Vietnam Pro', system-ui, Arial, sans-serif;
+  --font: 'JetBrains Mono', Consolas, 'Liberation Mono', monospace;
   --header-h: 76px;
   --screen-h: calc(100vh - var(--header-h));
   --gap-y: clamp(20px, 3.4vh, 40px);
@@ -209,8 +209,9 @@ h3 { font-weight: 600; letter-spacing: -.015em; }
   radial-gradient(700px 400px at 0% 0%, #2e6aa144, transparent 60%),
   linear-gradient(150deg, #10304f, var(--navy)); }
 .cta-panel::before { width: 820px; left: -260px; bottom: -420px; opacity: .14; }
-.cta-copy, .contact-card { position: relative; z-index: 1; }
+.cta-copy, .contact-card { position: relative; z-index: 1; min-width: 0; }
 .cta-copy h2 { margin-bottom: 20px; }
+.cta-copy .gold-text { white-space: normal; }
 .cta-copy > p:not(.kicker) { color: #c8d4e0; font-size: 17px; max-width: 480px; }
 .cta-copy .kicker { color: var(--gold-soft); }
 .cta-contacts { display: flex; flex-wrap: wrap; gap: 16px 40px; margin-top: clamp(20px, 4vh, 40px); padding-top: clamp(16px, 3vh, 28px); border-top: 1px solid #ffffff1f; }
@@ -221,6 +222,7 @@ h3 { font-weight: 600; letter-spacing: -.015em; }
 .cta-contacts a:hover { color: var(--gold-soft); }
 .contact-card { background: var(--card); color: var(--ink); border-radius: var(--radius); padding: clamp(24px, 4.4vh, 40px); box-shadow: 0 40px 80px -40px #000c; }
 .contact-card h3 { font-size: 24px; margin-bottom: 20px; }
+.contact-card .btn { white-space: normal; text-align: center; }
 .contact-card label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
 .contact-card select { width: 100%; padding: 14px 44px 14px 16px; border: 1px solid #d6d0c3; border-radius: 14px; background: var(--cream) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230f2740' stroke-width='1.6'/%3E%3C/svg%3E") right 18px center no-repeat; appearance: none; font-size: 15px; }
 #interest-description { min-height: 72px; margin: 14px 0 20px; font-size: 15px; color: var(--muted); }
@@ -316,7 +318,7 @@ dialog a { color: var(--navy); text-decoration: underline; text-underline-offset
   .screen { padding-block: 28px; }
   .screen.hero { padding-top: 8px; }
   .hero-panel { border-radius: 26px; padding: 30px 22px 0; }
-  .hero h1 { font-size: clamp(34px, min(10.4vw, 6.6vh), 52px); }
+  .hero h1 { font-size: clamp(28px, min(8.2vw, 6.6vh), 48px); }
   .lead { font-size: 15px; }
   .hero-actions { gap: 10px; }
   .hero-actions .btn { width: 100%; padding-block: 13px; font-size: 15px; }
@@ -402,7 +404,7 @@ dialog a { color: var(--navy); text-decoration: underline; text-underline-offset
   h2 { font-size: 26px; }
   .kicker { margin-bottom: 8px; }
   .hero-panel { padding-top: 22px; }
-  .hero h1 { font-size: clamp(30px, 6vh, 44px); margin-bottom: 10px; }
+  .hero h1 { font-size: clamp(28px, min(8.2vw, 6vh), 44px); margin-bottom: 10px; }
   .lead { font-size: 14px; line-height: 1.5; }
   .hero-actions { margin-top: 16px; }
   .hero-actions .btn { padding-block: 11px; }
