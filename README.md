@@ -31,6 +31,8 @@ File `vercel.json` đã khai báo thư mục xuất bản. Các lần push tiế
 - `dist/styles.css`: giao diện, bố cục responsive và hiệu ứng chuyển động (tự tắt khi thiết bị bật giảm chuyển động).
 - `dist/app.js`: menu điện thoại, thanh tiến trình cuộn, hiệu ứng xuất hiện khi cuộn, bộ lọc ngành, chọn chủ đề tư vấn, thanh liên hệ trên điện thoại và hộp nguồn tham khảo.
 - `dist/assets/`: ảnh thực tế, logo, phông chữ và `trong-dong.svg` (hoạ tiết mặt trống đồng vẽ lại dạng nét, dùng làm nền).
+- Slideshow cơ sở đào tạo có 5 ảnh, tự chuyển sau 6,5 giây, hỗ trợ vuốt, phím mũi tên và tạm dừng. Tự dừng khi rê chuột, dùng bàn phím trong slideshow, ra khỏi khung nhìn hoặc chuyển tab; mặc định tắt tự chạy khi thiết bị bật giảm chuyển động.
+- Ảnh Harmony, myU và Nguyễn Bá Tuyển: [UniZone, 2024](https://unizone.edu.vn/vhu-cac-co-so-dao-tao-dai-hoc-van-hien/). Ảnh Quận 12: [Phòng Quản trị Cơ sở vật chất VHU, 2014](https://csvc.vhu.edu.vn/vi/tin-tuc-moi-nhat/cac-co-so-hoc-tap-cua-truong-1). Đây là ảnh tư liệu, không xác nhận diện mạo hiện tại. Họa tiết chim Lạc tham khảo [trống Ngọc Lũ tại Bảo tàng Lịch sử Quốc gia](https://baotanglichsu.vn/en/Articles/1004/73640/national-treasures-the-ngoc-lu-drum.html), được vẽ lại bằng SVG cho nền trang.
 - Mỗi phần của trang cao đúng một màn hình. Phần Campus 360° nhúng trực tiếp tour tại https://360.vhu.edu.vn/.
 
 Thông tin và hình ảnh tham khảo từ website [Đại học Văn Hiến](https://vhu.edu.vn/), [cổng tuyển sinh](https://tuyensinh.vhu.edu.vn/) và [cổng tân sinh viên](https://tansinhvien.vhu.edu.vn/). Trang có mục nguồn thông tin, hình ảnh và ghi chú đây là bài thực hành marketing, không phải cổng tuyển sinh chính thức.

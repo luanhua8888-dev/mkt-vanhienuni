@@ -84,6 +84,85 @@ document.querySelector('#interest').addEventListener('change', event => {
   link.textContent = resource.label;
 });
 
+// Campus photos: pause for focus, hover, hidden tabs and reduced motion.
+const campusSlider = document.querySelector('.campus-slider');
+const campusSlides = [...campusSlider.querySelectorAll('.campus-slide')];
+const campusChoices = [...campusSlider.querySelectorAll('[data-campus-go]')];
+const campusPause = campusSlider.querySelector('[data-campus-pause]');
+const campusMotion = matchMedia('(prefers-reduced-motion: reduce)');
+let campusIndex = 0;
+let campusTimer;
+let campusVisible = false;
+let campusPaused = campusMotion.matches;
+let campusHovered = false;
+let campusFocused = false;
+let campusRequest = 0;
+const updateCampusPause = () => {
+  campusPause.setAttribute('aria-pressed', String(campusPaused));
+  campusPause.setAttribute('aria-label', campusPaused ? 'Bật tự động chuyển ảnh' : 'Tạm dừng tự động chuyển ảnh');
+  campusPause.firstElementChild.textContent = campusPaused ? '▷' : 'Ⅱ';
+};
+const scheduleCampus = () => {
+  clearTimeout(campusTimer);
+  campusSlider.classList.remove('is-playing');
+  if (!campusVisible || campusPaused || campusHovered || campusFocused || document.hidden) return;
+  void campusSlider.offsetWidth;
+  campusSlider.classList.add('is-playing');
+  campusTimer = setTimeout(() => showCampus(campusIndex + 1), 6500);
+};
+const showCampus = async (index, announce = false) => {
+  const next = (index + campusSlides.length) % campusSlides.length;
+  const request = ++campusRequest;
+  const nextImage = campusSlides[next].querySelector('img');
+  nextImage.loading = 'eager';
+  try { await nextImage.decode(); } catch { /* The alternative text remains available if an image fails. */ }
+  if (request !== campusRequest) return;
+  campusIndex = next;
+  campusSlides.forEach((slide, i) => {
+    const active = i === campusIndex;
+    slide.classList.toggle('is-active', active);
+    slide.setAttribute('aria-hidden', String(!active));
+    slide.inert = !active;
+    campusChoices[i].classList.toggle('is-active', active);
+    campusChoices[i].setAttribute('aria-pressed', String(active));
+  });
+  campusSlider.querySelector('[data-campus-current]').textContent = String(campusIndex + 1).padStart(2, '0');
+  if (announce) campusSlider.querySelector('[data-campus-status]').textContent = campusSlides[campusIndex].getAttribute('aria-label');
+  campusSlides[(campusIndex + 1) % campusSlides.length].querySelector('img').loading = 'eager';
+  scheduleCampus();
+};
+campusChoices.forEach((choice, i) => choice.addEventListener('click', () => showCampus(i, true)));
+campusSlider.querySelector('[data-campus-prev]').addEventListener('click', () => showCampus(campusIndex - 1, true));
+campusSlider.querySelector('[data-campus-next]').addEventListener('click', () => showCampus(campusIndex + 1, true));
+campusPause.addEventListener('click', () => { campusPaused = !campusPaused; updateCampusPause(); scheduleCampus(); });
+campusSlider.addEventListener('mouseenter', () => { campusHovered = true; scheduleCampus(); });
+campusSlider.addEventListener('mouseleave', () => { campusHovered = false; scheduleCampus(); });
+campusSlider.addEventListener('focusin', () => { campusFocused = true; scheduleCampus(); });
+campusSlider.addEventListener('focusout', event => { campusFocused = campusSlider.contains(event.relatedTarget); scheduleCampus(); });
+campusSlider.addEventListener('keydown', event => {
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+  event.preventDefault();
+  showCampus(campusIndex + (event.key === 'ArrowRight' ? 1 : -1), true);
+});
+let campusTouch;
+const campusStage = campusSlider.querySelector('.campus-stage');
+campusStage.addEventListener('pointerdown', event => { if (event.pointerType !== 'mouse') campusTouch = { x: event.clientX, y: event.clientY }; });
+campusStage.addEventListener('pointerup', event => {
+  if (!campusTouch) return;
+  const x = event.clientX - campusTouch.x;
+  const y = event.clientY - campusTouch.y;
+  campusTouch = null;
+  if (Math.abs(x) > 45 && Math.abs(x) > Math.abs(y)) showCampus(campusIndex + (x < 0 ? 1 : -1), true);
+});
+campusStage.addEventListener('pointercancel', () => { campusTouch = null; });
+document.addEventListener('visibilitychange', scheduleCampus);
+campusMotion.addEventListener('change', () => { campusPaused = campusMotion.matches; updateCampusPause(); scheduleCampus(); });
+new IntersectionObserver(entries => {
+  campusVisible = entries[0].isIntersecting;
+  scheduleCampus();
+}, { threshold: .25 }).observe(campusSlider);
+updateCampusPause();
+
 // Campus 360° tour: loads by itself near the viewport on desktop, on tap for touch screens
 const tour = document.querySelector('.tour');
 const tourFrame = tour.querySelector('iframe');
