@@ -363,23 +363,86 @@ h3 { font-weight: 600; letter-spacing: -.015em; }
 .contact-note { margin-top: 14px; font-size: 13px; color: #8a949e; text-align: center; }
 
 /* Footer */
-.footer { border-top: 1px solid var(--line); padding: 56px 0 0; }
-.footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; }
-.footer-brand img { width: 240px; height: auto; }
-.footer-top strong { display: block; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-.footer-top p, .footer-top a, .footer-top button { display: block; font-size: 15px; color: var(--muted); margin-bottom: 8px; }
-.footer-top a:hover, .footer-top button:hover { color: var(--navy); }
-.footer-top .inline-button { text-decoration: none; }
-.footer-top .footer-location-name { color: var(--navy); font-weight: 600; margin-bottom: 6px; }
-.footer address { font-size: 14px; line-height: 1.8; font-style: normal; color: var(--muted); }
-.footer-campuses { padding: 32px 0 40px; border-top: 1px solid var(--line); }
-.footer-campuses h2 { font-size: 13px; line-height: 1.6; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
-.campus-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 36px; list-style: none; padding: 0; margin: 0; }
-.campus-list li { display: flex; align-items: flex-start; gap: 14px; min-width: 0; }
-.campus-number { display: grid; place-items: center; flex: 0 0 34px; height: 34px; border: 1px solid var(--line); border-radius: 50%; background: var(--tint); color: var(--navy); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.campus-list h3 { font-size: 15px; line-height: 1.5; color: var(--navy); margin: 4px 0 6px; }
-.footer-bottom { display: flex; justify-content: space-between; gap: 24px; padding: 22px 0 30px; border-top: 1px solid var(--line); font-size: 13px; color: #7c8792; }
-.footer-bottom a:hover { color: var(--navy); }
+.footer { position: relative; isolation: isolate; overflow: hidden; padding: 48px 0 0; background: linear-gradient(135deg, #13324d, #0b2035 75%); color: #edf3f7; font-family: 'Be Vietnam Pro', system-ui, sans-serif; }
+.footer::before { content: ''; position: absolute; z-index: -1; width: 680px; height: 680px; top: -380px; right: -240px; background: url(assets/trong-dong.svg) center / contain no-repeat; opacity: .1; pointer-events: none; }
+.footer > .container { max-width: 1400px; }
+.footer-top { display: grid; grid-template-columns: 1.2fr 1fr 1fr; align-items: center; gap: 56px; padding-bottom: 36px; }
+.footer-logo { display: inline-block; max-width: 100%; padding: 16px 20px; border-radius: 18px; background: #fffdf7; box-shadow: 0 14px 40px -24px #0009; }
+.footer-brand img { width: 285px; height: auto; }
+.footer-motto { margin-top: 15px; color: var(--gold-soft); font-family: 'Great Vibes', cursive; font-size: 31px; line-height: 1.4; }
+.footer-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: .16em; line-height: 1.7; text-transform: uppercase; color: #d2b580; }
+.footer-phone { display: flex; align-items: center; gap: 20px; width: fit-content; margin: 7px 0 9px; font-size: clamp(28px, 3vw, 40px); font-weight: 700; line-height: 1.2; letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+.footer-phone > span { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid #c9a26555; border-radius: 50%; font-size: 18px; font-weight: 400; color: var(--gold-soft); }
+.footer-phone:hover, .footer-email:hover { color: var(--gold-soft); }
+.footer-email { color: #b7c9d9; font-size: 14px; }
+.footer-links { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; font-size: 13px; color: #c3d0dc; }
+.footer-links .footer-eyebrow { margin-bottom: 5px; }
+.footer-links a, .footer-links button { display: flex; justify-content: space-between; gap: 18px; width: 100%; text-align: left; }
+.footer-links a:hover, .footer-links button:hover { color: var(--gold-soft); }
+.footer-links .inline-button { text-decoration: none; }
+.footer-links span { color: #c9a265; }
+.footer-locations { display: grid; grid-template-columns: minmax(260px, .85fr) minmax(0, 2fr); gap: 28px; padding: 30px 0 32px; border-top: 1px solid #ffffff16; }
+.footer-headquarters { position: relative; display: flex; flex-direction: column; align-items: flex-start; padding: 28px; border: 1px solid #c9a26533; border-radius: 24px; background: radial-gradient(ellipse at 0 0, #c9a26515, transparent 75%), #ffffff04; }
+.footer-pin { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 24px; border: 1px solid #c9a26544; border-radius: 13px; color: var(--gold-soft); }
+.footer-pin svg { width: 23px; height: 23px; }
+.footer-headquarters h2 { margin: 7px 0 14px; font-size: clamp(24px, 2vw, 30px); line-height: 1.25; font-weight: 700; letter-spacing: -.035em; }
+.footer address { font-size: 12px; line-height: 1.85; font-style: normal; color: #acbfd0; }
+.footer-map { display: inline-flex; align-items: center; gap: 24px; margin-top: auto; padding-top: 28px; font-size: 12px; color: var(--gold-soft); }
+.footer-map:hover { color: #fff; }
+.footer .footer-campuses { padding: 0; border: 0; min-width: 0; }
+.footer-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.footer-section-heading h2 { font-size: 18px; line-height: 1.4; font-weight: 700; letter-spacing: -.015em; }
+.footer-section-heading > a { font-size: 11px; white-space: nowrap; color: var(--gold-soft); }
+.campus-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 0; }
+.campus-list li { min-width: 0; }
+.footer-location-card { display: flex; align-items: flex-start; gap: 12px; height: 100%; padding: 16px; border: 1px solid #ffffff12; border-radius: 16px; background: #ffffff03; transition: background .25s, border-color .25s, translate .25s; }
+.footer-location-card:hover { background: #ffffff09; border-color: #c9a26566; translate: 0 -2px; }
+.campus-number { display: grid; place-items: center; flex: 0 0 28px; height: 28px; margin-top: 1px; border: 1px solid #c9a26533; border-radius: 9px; background: #c9a2650d; color: var(--gold-soft); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-variant-numeric: tabular-nums; }
+.footer-location-card > div { flex: 1; min-width: 0; }
+.campus-list h3 { font-size: 13px; font-weight: 700; line-height: 1.5; margin: 0 0 5px; color: #e7eff6; }
+.footer-location-arrow { flex: 0 0 auto; color: #c9a265; font-size: 15px; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 0 24px; border-top: 1px solid #ffffff16; font-size: 10px; line-height: 1.7; color: #91a6ba; }
+.footer-bottom > a { display: flex; align-items: center; gap: 14px; flex-shrink: 0; color: #c3d0dc; }
+.footer-bottom > a span { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #ffffff20; border-radius: 50%; font-size: 17px; }
+.footer-bottom > a:hover { color: var(--gold-soft); }
+@media (max-width: 1100px) {
+  .footer-top { gap: 28px; }
+  .footer-locations { grid-template-columns: minmax(240px, .8fr) minmax(0, 1.8fr); gap: 20px; }
+  .footer-location-card { gap: 9px; padding: 13px; }
+  .footer-location-arrow { display: none; }
+}
+@media (max-width: 900px) {
+  .footer { padding-top: 36px; }
+  .footer-top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-locations { grid-template-columns: minmax(0, 1fr); }
+  .footer-headquarters { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; grid-template-areas: 'pin eyebrow map' 'pin title map' 'pin address map'; align-items: center; gap: 5px 20px; padding: 22px; }
+  .footer-pin { grid-area: pin; margin: 0; }
+  .footer-headquarters .footer-eyebrow { grid-area: eyebrow; }
+  .footer-headquarters h2 { grid-area: title; margin: 0; }
+  .footer-headquarters address { grid-area: address; }
+  .footer-headquarters .footer-map { grid-area: map; padding: 0; margin: 0; }
+}
+@media (max-width: 640px) {
+  .footer-top { grid-template-columns: minmax(0, 1fr); gap: 26px; padding-bottom: 28px; }
+  .footer-brand { grid-column: auto; }
+  .footer-logo { padding: 14px 16px; }
+  .footer-brand img { width: 260px; }
+  .footer-motto { font-size: 28px; }
+  .footer-phone { font-size: 36px; }
+  .footer-links { gap: 12px; }
+  .footer-locations { padding-top: 24px; gap: 28px; }
+  .footer-headquarters { grid-template-columns: 40px minmax(0, 1fr); grid-template-areas: 'pin eyebrow' 'title title' 'address address' 'map map'; gap: 12px; padding: 22px; }
+  .footer-pin { width: 36px; height: 36px; }
+  .footer-headquarters .footer-map { padding-top: 4px; }
+  .footer-section-heading { flex-wrap: wrap; gap: 8px; }
+  .footer-section-heading h2 { font-size: 18px; }
+  .campus-list { grid-template-columns: minmax(0, 1fr); gap: 9px; }
+  .footer-location-card { padding: 16px; gap: 12px; }
+  .footer-location-arrow { display: block; }
+  .footer address { font-size: 12px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 14px; font-size: 10px; }
+}
 
 /* Dialog */
 dialog { width: min(640px, calc(100% - 32px)); max-height: 85vh; padding: 36px; border: 0; border-radius: var(--radius); background: var(--cream); color: var(--ink); box-shadow: 0 40px 100px #0b1f3355; }
@@ -433,9 +496,6 @@ dialog a { color: var(--navy); text-decoration: underline; text-underline-offset
   .gallery { grid-template-columns: 1fr; height: auto; }
   .tour { height: clamp(260px, calc(var(--screen-h) - 340px), 560px); }
   .gallery-photo { display: none; }
-  .footer-top { grid-template-columns: 1fr 1fr; }
-  .footer-brand { grid-column: span 2; }
-  .campus-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .hero-grid { gap: 28px; }
   .hero-media { position: relative; width: min(520px, 100%); margin-inline: auto; }
@@ -523,11 +583,7 @@ dialog a { color: var(--navy); text-decoration: underline; text-underline-offset
   .contact-card h3 { font-size: 20px; margin-bottom: 14px; }
   #interest-description { min-height: 0; margin: 12px 0 16px; font-size: 14px; }
   .contact-note { display: none; }
-  .footer-top { grid-template-columns: 1fr; gap: 24px; }
   .footer-brand { grid-column: auto; }
-  .footer-campuses { padding: 26px 0 30px; }
-  .campus-list { grid-template-columns: 1fr; gap: 22px; }
-  .footer-bottom { flex-direction: column; gap: 8px; }
   dialog { padding: 26px 22px; }
   .dialog-header h2 { font-size: 22px; }
 }
