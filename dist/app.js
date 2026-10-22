@@ -13,6 +13,74 @@ menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria
 navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
 document.addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
 
+// Hero gallery: select a thumbnail or move the current photo behind the next.
+const heroDeck = document.querySelector('.hero-deck');
+const heroCards = [...heroDeck.querySelectorAll('.hero-photo-card')];
+const heroChoices = [...document.querySelectorAll('[data-hero-go]')];
+const heroMotion = matchMedia('(prefers-reduced-motion: reduce)');
+let heroIndex = 0;
+let heroCycling = false;
+const selectHero = async index => {
+  const next = (index + heroCards.length) % heroCards.length;
+  if (heroCycling || next === heroIndex) return;
+  heroCycling = true;
+  heroDeck.setAttribute('aria-busy', 'true');
+  try {
+    try { await heroCards[next].querySelector('img').decode(); } catch { /* Keep the photo's alternative text available. */ }
+    heroIndex = next;
+    heroCards.forEach((card, i) => {
+      const position = (i - heroIndex + heroCards.length) % heroCards.length;
+      card.dataset.position = position;
+      card.setAttribute('aria-hidden', String(position !== 0));
+      heroChoices[i].setAttribute('aria-pressed', String(position === 0));
+    });
+    void heroDeck.offsetWidth;
+    const transitions = heroCards.flatMap(card => typeof card.getAnimations === 'function' ? card.getAnimations() : []);
+    await Promise.allSettled(transitions.map(animation => animation.finished));
+    document.querySelector('[data-hero-current]').textContent = String(heroIndex + 1).padStart(2, '0');
+    const label = heroCards[heroIndex].querySelector('.hero-photo-label > span').textContent;
+    document.querySelector('#hero-deck-status').textContent = 'Ảnh ' + (heroIndex + 1) + ' trên ' + heroCards.length + ': ' + label + '.';
+  } finally {
+    heroDeck.setAttribute('aria-busy', 'false');
+    heroCycling = false;
+  }
+};
+heroDeck.addEventListener('click', () => selectHero(heroIndex + 1));
+heroChoices.forEach((choice, i) => choice.addEventListener('click', () => selectHero(i)));
+heroDeck.addEventListener('keydown', event => {
+  if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+  event.preventDefault();
+  selectHero(heroIndex + (event.key === 'ArrowRight' ? 1 : -1));
+});
+
+// Draw a winding journey through the actual marker positions on each screen size.
+const journey = document.querySelector('.journey-map');
+const drawJourney = () => {
+  const svg = journey.querySelector('svg');
+  svg.setAttribute('viewBox', '0 0 ' + journey.clientWidth + ' ' + journey.clientHeight);
+  const points = [...journey.querySelectorAll('.journey-stop')].map(marker => {
+    let x = marker.offsetWidth / 2;
+    let y = marker.offsetHeight / 2;
+    for (let node = marker; node && node !== journey; node = node.offsetParent) { x += node.offsetLeft; y += node.offsetTop; }
+    return { x, y };
+  });
+  const vertical = matchMedia('(max-width: 900px)').matches;
+  let path = 'M ' + points[0].x + ' ' + points[0].y;
+  points.slice(1).forEach((point, index) => {
+    const previous = points[index];
+    if (vertical) {
+      const bend = (point.y - previous.y) * .55;
+      path += ' C ' + previous.x + ' ' + (previous.y + bend) + ', ' + point.x + ' ' + (point.y - bend) + ', ' + point.x + ' ' + point.y;
+    } else {
+      const bend = (point.x - previous.x) * .55;
+      path += ' C ' + (previous.x + bend) + ' ' + previous.y + ', ' + (point.x - bend) + ' ' + point.y + ', ' + point.x + ' ' + point.y;
+    }
+  });
+  svg.querySelectorAll('path').forEach(line => line.setAttribute('d', path));
+};
+new ResizeObserver(drawJourney).observe(journey);
+document.fonts.ready.then(drawJourney);
+
 // Header state, scroll progress, section transitions and section dots
 const header = document.querySelector('.header');
 const progress = document.querySelector('.progress');

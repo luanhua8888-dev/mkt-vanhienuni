@@ -55,17 +55,31 @@
         <div class="hero-panel drum">
           <div class="hero-grid">
             <div class="hero-copy">
-              <p class="kicker">Đại học Văn Hiến · Mã trường DVH</p>
-              <h1 id="hero-title">Hiểu mình.<br>Chọn ngành.<br><span class="gold-text">Vững tương lai.</span></h1>
-              <p class="lead">Một lựa chọn phù hợp bắt đầu từ việc hiểu chính mình. Cùng Văn Hiến khám phá ngành học, nuôi dưỡng năng lực và viết tiếp hành trình trưởng thành của bạn.</p>
+              <div class="hero-university-heading"><p class="hero-university"><span>Đại học</span><strong>Văn Hiến</strong></p><span class="hero-school-code"><small>Mã trường</small><b>DVH</b></span></div>
+              <h1 id="hero-title"><span class="hero-title-line">Hiểu mình.</span><span class="hero-title-line">Chọn ngành.</span><span class="hero-title-line gold-text">Vững tương lai.</span></h1>
+              <p class="lead"><strong>Một lựa chọn phù hợp bắt đầu từ việc hiểu chính mình.</strong><span>Cùng Văn Hiến khám phá ngành học, nuôi dưỡng năng lực và viết tiếp hành trình trưởng thành của bạn.</span></p>
               <div class="hero-actions">
                 <a href="#tu-van" class="btn btn-gold btn-lg">Nhận tư vấn ngành học</a>
                 <a href="#nganh-hoc" class="btn btn-ghost btn-lg">Khám phá ngành học</a>
               </div>
             </div>
-            <div class="hero-media" aria-hidden="true">
-              <img class="hero-main" src="assets/practice.jpg" alt="" width="650" height="370" fetchpriority="high">
-              <img class="hero-sub" src="assets/students.jpg" alt="" width="650" height="370">
+            <div class="hero-media">
+              <button class="hero-deck" type="button" aria-label="Chuyển ảnh phía trước ra sau để xem ảnh tiếp theo" aria-describedby="hero-deck-status">
+                <span class="hero-photo-card" data-position="0" aria-hidden="false"><img src="assets/practice.jpg" alt="Sinh viên Văn Hiến trong ngày tốt nghiệp" width="650" height="370" fetchpriority="high"><span class="hero-photo-label"><span>Khoảnh khắc tốt nghiệp</span><span aria-hidden="true">01</span></span></span>
+                <span class="hero-photo-card" data-position="1" aria-hidden="true"><img src="assets/students.jpg" alt="Giảng viên trao đổi cùng sinh viên trong giờ học nhóm" width="650" height="370" decoding="async"><span class="hero-photo-label"><span>Cùng học, cùng trưởng thành</span><span aria-hidden="true">02</span></span></span>
+                <span class="hero-photo-card" data-position="2" aria-hidden="true"><img src="assets/life.jpg" alt="Giảng viên hướng dẫn sinh viên Đại học Văn Hiến" width="650" height="370" decoding="async"><span class="hero-photo-label"><span>Đồng hành trên mỗi bước</span><span aria-hidden="true">03</span></span></span>
+                <span class="hero-photo-card" data-position="3" aria-hidden="true"><img src="assets/campus-hunghau.jpg" alt="Tòa nhà HungHau Campus và sân trường" width="1000" height="667" decoding="async"><span class="hero-photo-label"><span>Một góc HungHau Campus</span><span aria-hidden="true">04</span></span></span>
+                <span class="hero-photo-card" data-position="4" aria-hidden="true"><img src="assets/campus-harmony.jpg" alt="Sinh viên trước cổng Harmony Campus" width="650" height="433" decoding="async"><span class="hero-photo-label"><span>Gặp nhau tại Harmony</span><span aria-hidden="true">05</span></span></span>
+              </button>
+              <div class="hero-thumbnails" aria-label="Chọn ảnh Văn Hiến">
+                <button type="button" data-hero-go="0" aria-pressed="true" aria-label="Xem ảnh khoảnh khắc tốt nghiệp"><img src="assets/practice.jpg" width="100" height="64" alt=""></button>
+                <button type="button" data-hero-go="1" aria-pressed="false" aria-label="Xem ảnh cùng học, cùng trưởng thành"><img src="assets/students.jpg" width="100" height="64" alt=""></button>
+                <button type="button" data-hero-go="2" aria-pressed="false" aria-label="Xem ảnh giảng viên đồng hành cùng sinh viên"><img src="assets/life.jpg" width="100" height="64" alt=""></button>
+                <button type="button" data-hero-go="3" aria-pressed="false" aria-label="Xem ảnh HungHau Campus"><img src="assets/campus-hunghau.jpg" width="100" height="64" alt=""></button>
+                <button type="button" data-hero-go="4" aria-pressed="false" aria-label="Xem ảnh Harmony Campus"><img src="assets/campus-harmony.jpg" width="100" height="64" alt=""></button>
+              </div>
+              <div class="hero-deck-footer"><span class="hero-photo-count" aria-hidden="true"><b data-hero-current>01</b> / 05</span><span class="hero-deck-hint">Bấm ảnh lớn để đổi <span aria-hidden="true">↻</span></span></div>
+              <p class="sr-only" id="hero-deck-status" aria-live="polite" aria-atomic="true">Ảnh 1 trên 5: Khoảnh khắc tốt nghiệp.</p>
             </div>
           </div>
           <dl class="stats" aria-label="Thông tin Đại học Văn Hiến">
@@ -161,12 +175,15 @@
             <h2>Từ băn khoăn đến tự tin.</h2>
           </div>
         </div>
-        <ol class="steps">
-          <li data-reveal><span>1</span><h3>Hiểu bản thân</h3><p>Ghi lại môn học bạn thích, điều bạn làm tốt và môi trường bạn mong muốn.</p></li>
-          <li data-reveal><span>2</span><h3>Khám phá ngành</h3><p>Xem các nhóm ngành và đọc chương trình đào tạo trên website từng khoa.</p></li>
-          <li data-reveal><span>3</span><h3>Tìm hiểu xét tuyển</h3><p>Tra cứu phương thức, tổ hợp và thời hạn trên cổng tuyển sinh chính thức.</p></li>
-          <li data-reveal><span>4</span><h3>Kết nối tư vấn</h3><p>Gọi 1800 1568 để được giải đáp cụ thể cho trường hợp của bạn.</p></li>
-        </ol>
+        <div class="journey-map">
+          <svg class="journey-road" aria-hidden="true" focusable="false"><path class="journey-road-shadow"/><path class="journey-road-surface"/><path class="journey-road-center"/></svg>
+          <ol class="steps">
+            <li data-reveal><span class="journey-stop">1</span><div class="journey-stop-copy"><h3>Hiểu bản thân</h3><p>Ghi lại môn học bạn thích, điều bạn làm tốt và môi trường bạn mong muốn.</p></div></li>
+            <li data-reveal><span class="journey-stop">2</span><div class="journey-stop-copy"><h3>Khám phá ngành</h3><p>Xem các nhóm ngành và đọc chương trình đào tạo trên website từng khoa.</p></div></li>
+            <li data-reveal><span class="journey-stop">3</span><div class="journey-stop-copy"><h3>Tìm hiểu xét tuyển</h3><p>Tra cứu phương thức, tổ hợp và thời hạn trên cổng tuyển sinh chính thức.</p></div></li>
+            <li data-reveal><span class="journey-stop">4</span><div class="journey-stop-copy"><h3>Kết nối tư vấn</h3><p>Gọi 1800 1568 để được giải đáp cụ thể cho trường hợp của bạn.</p></div></li>
+          </ol>
+        </div>
       </div>
     </section>
 
